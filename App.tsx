@@ -1,118 +1,50 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- */
+import { Button, StyleSheet, Text, View } from 'react-native'
+import React from 'react'
+import { NavigationContainer } from '@react-navigation/native'
+import { createDrawerNavigator } from '@react-navigation/drawer'
+import Home from './src/screens/Home/Home';
+import BottomSheet from './src/screens/BottomSheet/BottomSheet';
+import DraggableNotificationCard from './src/screens/DraggableNotificationCard/DraggableNotificationCard';
 
-import React from 'react';
-import type {PropsWithChildren} from 'react';
-import {
-  SafeAreaView,
-  ScrollView,
-  StatusBar,
-  StyleSheet,
-  Text,
-  useColorScheme,
-  View,
-} from 'react-native';
+import AccordionScreen from './src/screens/Accordion/Accordion';
 
-import {
-  Colors,
-  DebugInstructions,
-  Header,
-  LearnMoreLinks,
-  ReloadInstructions,
-} from 'react-native/Libraries/NewAppScreen';
-
-type SectionProps = PropsWithChildren<{
-  title: string;
-}>;
-
-function Section({children, title}: SectionProps): React.JSX.Element {
-  const isDarkMode = useColorScheme() === 'dark';
+function HomeScreen({ navigation }:any) {
   return (
-    <View style={styles.sectionContainer}>
-      <Text
-        style={[
-          styles.sectionTitle,
-          {
-            color: isDarkMode ? Colors.white : Colors.black,
-          },
-        ]}>
-        {title}
-      </Text>
-      <Text
-        style={[
-          styles.sectionDescription,
-          {
-            color: isDarkMode ? Colors.light : Colors.dark,
-          },
-        ]}>
-        {children}
-      </Text>
+    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+      <Button
+        onPress={() => navigation.navigate('Notifications')}
+        title="Go to notifications"
+      />
     </View>
   );
 }
 
-function App(): React.JSX.Element {
-  const isDarkMode = useColorScheme() === 'dark';
-
-  const backgroundStyle = {
-    backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
-  };
-
+function NotificationsScreen({ navigation }:any) {
   return (
-    <SafeAreaView style={backgroundStyle}>
-      <StatusBar
-        barStyle={isDarkMode ? 'light-content' : 'dark-content'}
-        backgroundColor={backgroundStyle.backgroundColor}
-      />
-      <ScrollView
-        contentInsetAdjustmentBehavior="automatic"
-        style={backgroundStyle}>
-        <Header />
-        <View
-          style={{
-            backgroundColor: isDarkMode ? Colors.black : Colors.white,
-          }}>
-          <Section title="Step One">
-            Edit <Text style={styles.highlight}>App.tsx</Text> to change this
-            screen and then come back to see your edits.
-          </Section>
-          <Section title="See Your Changes">
-            <ReloadInstructions />
-          </Section>
-          <Section title="Debug">
-            <DebugInstructions />
-          </Section>
-          <Section title="Learn More">
-            Read the docs to discover what to do next:
-          </Section>
-          <LearnMoreLinks />
-        </View>
-      </ScrollView>
-    </SafeAreaView>
+    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+      <Button onPress={() => navigation.goBack()} title="Go back home" />
+    </View>
   );
 }
 
-const styles = StyleSheet.create({
-  sectionContainer: {
-    marginTop: 32,
-    paddingHorizontal: 24,
-  },
-  sectionTitle: {
-    fontSize: 24,
-    fontWeight: '600',
-  },
-  sectionDescription: {
-    marginTop: 8,
-    fontSize: 18,
-    fontWeight: '400',
-  },
-  highlight: {
-    fontWeight: '700',
-  },
-});
 
-export default App;
+const Drawer = createDrawerNavigator();
+
+const App = () => {
+  
+  return (
+    <NavigationContainer>
+    <Drawer.Navigator initialRouteName="Home">
+    <Drawer.Screen name="Home" component={Home} />
+        <Drawer.Screen name="Bottom Sheet" component={BottomSheet} />
+        <Drawer.Screen name="Draggable Notification Card" component={DraggableNotificationCard} />
+        <Drawer.Screen name="Accordion" component={AccordionScreen} />
+    </Drawer.Navigator>
+  </NavigationContainer>
+
+  )
+}
+
+export default App
+
+const styles = StyleSheet.create({})
