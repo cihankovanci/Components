@@ -40,7 +40,7 @@ const NotificationContainer = ({
       duration: 300,
       useNativeDriver: true,
     }).start();
-    // eslint-disable-next-line react-hooks/exhaustive-deps,
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const panResponder = useRef(
