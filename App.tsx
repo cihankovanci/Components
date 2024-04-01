@@ -8,13 +8,15 @@ import DraggableNotificationCard from './src/screens/DraggableNotificationCard/D
 
 import AccordionScreen from './src/screens/Accordion/Accordion';
 import DropdownScreen from './src/screens/Dropdown/Dropdown';
+import Toast from './src/screens/Toast/Toast';
+import SwipeList from './src/screens/SwipeList/SwipeList';
 
 const Drawer = createDrawerNavigator();
 
 const App = () => {
   return (
     <NavigationContainer>
-      <Drawer.Navigator initialRouteName="Home">
+      <Drawer.Navigator initialRouteName="Home" screenOptions={{headerShown: true}}>
         <Drawer.Screen name="Home" component={Home} />
         <Drawer.Screen name="Bottom Sheet" component={BottomSheet} />
         <Drawer.Screen
@@ -24,6 +26,8 @@ const App = () => {
         <Drawer.Screen name="Accordion" component={AccordionScreen} />
 
         <Drawer.Screen name="Dropdown" component={DropdownScreen} />
+        <Drawer.Screen name="Toast" component={Toast} />
+        <Drawer.Screen name="Swipe List" component={SwipeList} />
       </Drawer.Navigator>
     </NavigationContainer>
   );
